@@ -99,27 +99,27 @@ describe 'Customer search API' do
     expect(customers.count).to eq(2)
   end
 
-  xit "returns a single customer by created at" do
-    created = create(:customer, created_at: "January 1 1900")
+  it "returns multiple customers by created at" do
+    customer_1, customer_2 = create_list(:customer, 2, created_at: "July 4 1946")
 
-    get "/api/v1/customers/find?created_at=January_1_1900"
+    get "/api/v1/customers/find_all?created_at=July_4_1946"
 
     expect(response).to be_success
 
-    customer = JSON.parse(response.body)
+    customers = JSON.parse(response.body)
 
-    expect(customer["id"]).to eq(created.id)
+    expect(customers.count).to eq(2)
   end
 
-  xit "returns a single customer by updated at" do
-    updated = create(:customer, updated_at: "January 1 2000")
+  it "returns multiple customers by updated at" do
+    customer_1, customer_2 = create_list(:customer, 2, updated_at: "July 4 2007")
 
-    get "/api/v1/customers/find?updated_at=January_1_2000"
+    get "/api/v1/customers/find_all?updated_at=July_4_2007"
 
     expect(response).to be_success
 
-    customer = JSON.parse(response.body)
+    customers = JSON.parse(response.body)
 
-    expect(customer["id"]).to eq(updated.id)
+    expect(customers.count).to eq(2)
   end
 end
