@@ -24,4 +24,16 @@ describe 'transaction search API' do
 
     expect(transaction["invoice_id"]).to eq(invoice_id)
   end
+
+  it "can find a single transaction by credit card #" do
+    cc = create(:transaction).credit_card_number
+
+    get "/api/v1/transactions/find?credit_card_number=#{cc}"
+
+    expect(response).to be_success
+
+    transaction = JSON.parse(response.body)
+
+    expect(transaction["credit_card_number"]).to eq(cc)
+  end
 end
