@@ -1,13 +1,5 @@
-
 require 'csv'
 require 'open-uri'
-
-# Merchant.destroy_all
-# Customer.destroy_all
-# Invoice.destroy_all
-# Item.destroy_all
-# InvoiceItem.destroy_all
-# Transaction.destroy_all
 
 urls = {
   "Merchant" => "https://raw.githubusercontent.com/turingschool-examples/sales_engine/master/data/merchants.csv",
