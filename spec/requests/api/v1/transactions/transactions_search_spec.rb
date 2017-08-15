@@ -36,4 +36,16 @@ describe 'transaction search API' do
 
     expect(transaction["credit_card_number"]).to eq(cc)
   end
+
+  it "can find a single transaction by credit card expiration date" do
+    created_trans = create(:transaction, credit_card_expiration_date: "July 10 2020")
+
+    get "/api/v1/transactions/find?credit_card_expiration_date=July_10_2020"
+
+    expect(response).to be_success
+
+    transaction = JSON.parse(response.body)
+
+    expect(transaction["id"]).to eq(created_trans.id)
+  end
 end
