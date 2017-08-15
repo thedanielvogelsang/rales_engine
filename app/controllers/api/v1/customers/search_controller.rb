@@ -6,6 +6,5 @@ class Api::V1::Customers::SearchController < ApplicationController
 
   def index
     render json: Customer.where(params.keys.first.to_sym => params[params.keys.first])
-
   end
 end
