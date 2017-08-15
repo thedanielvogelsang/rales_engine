@@ -10,6 +10,6 @@ describe "Transactions random API" do
 
     transaction = JSON.parse(response.body)
 
-    expect(transaction.first["id"]).to eq(trans_1).or eq(trans_2.id)
+    expect(transaction.count).to eq(1)
   end
 end
