@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe "invoice_items search 'find_all' API" do
   before(:each) do
-    @item = create(:item)
+    @merchant = create(:merchant)
+    @item = create(:item, merchant: @merchant)
     @invoice = create(:invoice)
   end
   it "can search and find all invoice_items by id" do

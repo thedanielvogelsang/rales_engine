@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'item random api' do
   it 'returns a random item from list of items' do
-    items = create_list(:item, 3)
+    merchant = create(:merchant)
+    items = create_list(:item, 3, merchant: merchant)
     item_ids = items.map{|item| item.id}
     get "/api/v1/items/random"
     assert_response :success

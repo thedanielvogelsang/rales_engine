@@ -11,34 +11,35 @@ describe "invoices search 'find_all' API" do
     expect(invoice.first["id"]).to eq(id)
   end
   it "can search and find all invoices by customer_id" do
-    created_invoices = create_list(:invoice, 3, customer_id: 20)
-    id = 20
+    customer = create(:customer)
+    created_invoices = create_list(:invoice, 3, customer: customer)
+
     different_invoice = create(:invoice)
     expect(Invoice.count).to eq(4)
-    get "/api/v1/invoices/find_all?customer_id=#{id}"
+    get "/api/v1/invoices/find_all?customer_id=#{customer.id}"
     assert_response :success
     invoices = JSON.parse(response.body)
+    
     expect(invoices.count).to eq(3)
-    expect(invoices.first['customer_id']).to eq(id)
-    expect(invoices.second['customer_id']).to eq(id)
-    expect(invoices.last['customer_id']).to eq(id)
-    # different invoice test proof?
+
   end
   it "can search and find all invoices by merchant_id" do
-    created_invoices = create_list(:invoice, 3, merchant_id: 1)
-    id = 1
-    different_invoice = create(:invoice, merchant_id: 2)
+    customer_1 = create(:customer)
+    customer_2 = create(:customer)
+    merchant_1 = create(:merchant)
+    merchant_2 = create(:merchant)
+    created_invoices = create_list(:invoice, 3, merchant: merchant_1, customer: customer_1)
+
+    different_invoice = create(:invoice, merchant: merchant_2, customer: customer_2)
     expect(Invoice.count).to eq(4)
-    get "/api/v1/invoices/find_all?merchant_id=#{id}"
+    get "/api/v1/invoices/find_all?merchant_id=#{merchant_1.id}"
     assert_response :success
     invoices = JSON.parse(response.body)
+
     expect(invoices.count).to eq(3)
-    expect(invoices.first['merchant_id']).to eq(1)
-    expect(invoices.second['merchant_id']).to eq(1)
-    expect(invoices.last['merchant_id']).to eq(1)
-    expect(invoices.first['customer_id']).to_not eq(invoices.last['customer_id'])
-    # different invoice test proof?
+
   end
+
   it "can search and find all invoices by status" do
     created_invoices = create_list(:invoice, 3)
     different_invoice = create(:invoice, status: "not_shipped")

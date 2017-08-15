@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'items api' do
   it 'returns a list of items' do
-    create_list(:item, 6)
+    merchant = create(:merchant)
+    create_list(:item, 6, merchant: merchant)
     get '/api/v1/items'
     expect(response).to be_success
     items = JSON.parse(response.body)
@@ -10,7 +11,8 @@ describe 'items api' do
   end
 
   it 'returns an item from its id' do
-    id = create(:item).id
+    merchant = create(:merchant)
+    id = create(:item, merchant: merchant).id
     get "/api/v1/items/#{id}"
     expect(response).to be_success
     item = JSON.parse(response.body)

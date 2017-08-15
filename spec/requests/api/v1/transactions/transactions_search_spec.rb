@@ -100,10 +100,11 @@ describe 'transaction search API' do
   end
 
   it "can find multiple transactions by invoice_id" do
-    trans_1, trans_2, trans_3 = create_list(:transaction, 3)
-    trans_4 = create(:transaction, invoice_id: 12222)
+    invoice = create(:invoice)
+    trans = create_list(:transaction, 3, invoice: invoice)
+    trans_4 = create(:transaction)
 
-    get "/api/v1/transactions/find_all?invoice_id=#{trans_1.invoice_id}"
+    get "/api/v1/transactions/find_all?invoice_id=#{trans.first.invoice_id}"
 
     expect(response).to be_success
 
