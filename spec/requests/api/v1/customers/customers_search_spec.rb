@@ -36,4 +36,16 @@ describe 'Customer search API' do
 
     expect(customer["last_name"]).to eq(last_name)
   end
+
+  it "returns a single customer by created at" do
+    created = create(:customer, created_at: "January 1 1900")
+
+    get "/api/v1/customers/find?created_at=January_1_1900"
+
+    expect(response).to be_success
+
+    customer = JSON.parse(response.body)
+
+    expect(customer["id"]).to eq(created.id)
+  end
 end
