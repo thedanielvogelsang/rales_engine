@@ -60,4 +60,28 @@ describe 'transaction search API' do
 
     expect(transaction["result"]).to eq(result)
   end
+
+  it "can find a single transaction by created at" do
+    created_trans = create(:transaction, created_at: "July 10 2001")
+
+    get "/api/v1/transactions/find?created_at=July_10_2001"
+
+    expect(response).to be_success
+
+    transaction = JSON.parse(response.body)
+
+    expect(transaction["id"]).to eq(created_trans.id)
+  end
+
+  it "can find a single transaction by updated at" do
+    created_trans = create(:transaction, updated_at: "June 10 2001")
+
+    get "/api/v1/transactions/find?updated_at=June_10_2001"
+
+    expect(response).to be_success
+
+    transaction = JSON.parse(response.body)
+
+    expect(transaction["id"]).to eq(created_trans.id)
+  end
 end
