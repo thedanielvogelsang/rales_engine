@@ -5,6 +5,7 @@ class Api::V1::Merchants::SearchController < ApplicationController
   end
 
   def index
+    
     render json: Merchant.where(params.keys.first.to_sym => params[params.keys.first])
   end
 
