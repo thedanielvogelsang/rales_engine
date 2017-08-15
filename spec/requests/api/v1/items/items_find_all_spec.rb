@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe "items search 'find_all' API" do
   it "can search and find all items by id" do
     items = create_list(:item, 3)
