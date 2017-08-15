@@ -21,7 +21,21 @@ describe "merchant search API" do
     expect(item['name']).to eq(name)
   end
 
-  it "can search and find a single item by its name" do
+  it "can search and find a single item by its description" do
+    description = create(:item).description
+    get "/api/v1/items/find?description=#{description}"
+    assert_response :success
+    item = JSON.parse(response.body)
+    expect(item['description']).to eq(description)
+  end
+  it "can search and find a single item by its unit price" do
+    description = create(:item).description
+    get "/api/v1/items/find?description=#{description}"
+    assert_response :success
+    item = JSON.parse(response.body)
+    expect(item['description']).to eq(description)
+  end
+  it "can search and find a single item by its merchant_id" do
     description = create(:item).description
     get "/api/v1/items/find?description=#{description}"
     assert_response :success
