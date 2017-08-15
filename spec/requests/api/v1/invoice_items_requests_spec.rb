@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'invoice_items api' do
   before(:each) do
-    @item = create(:item)
+    @merchant = create(:merchant)
+    @item = create(:item, merchant: @merchant)
     @invoice = create(:invoice)
   end
   it 'sends a list of invoice_items' do

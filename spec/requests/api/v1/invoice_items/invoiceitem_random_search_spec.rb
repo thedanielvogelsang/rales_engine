@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'invoice_item random api' do
   before(:each) do
-    @item = create(:item)
+    @merchant = create(:merchant)
+    @item = create(:item, merchant: @merchant)
     @invoice = create(:invoice)
   end
   it 'returns a random invoice_items from invoice_items db' do
