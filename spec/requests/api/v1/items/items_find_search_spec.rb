@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "merchant search API" do
+describe "items search 'find' API" do
   it "can search and find a single item by id" do
     id = create(:item).id
     get "/api/v1/items/find?id=#{id}"

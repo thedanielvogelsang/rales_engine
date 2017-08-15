@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-describe "invoices search 'find' API" do
+
+describe "invoices search 'find_all' API" do
   it "can search and find a single invoice by id" do
     id = create(:invoice).id
     get "/api/v1/invoices/find?id=#{id}"

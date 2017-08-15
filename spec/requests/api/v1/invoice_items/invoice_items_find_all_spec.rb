@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "invoice_items search 'find' API" do
+describe "invoice_items search 'find_all' API" do
   before(:each) do
     @item = create(:item)
     @invoice = create(:invoice)
