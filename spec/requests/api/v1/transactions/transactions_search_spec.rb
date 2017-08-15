@@ -12,4 +12,16 @@ describe 'transaction search API' do
 
     expect(transaction["id"]).to eq(id)
   end
+
+  it "can find a single transaction by invoice id" do
+    invoice_id = create(:transaction).invoice_id
+
+    get "/api/v1/transactions/find?invoice_id=#{invoice_id}"
+
+    expect(response).to be_success
+
+    transaction = JSON.parse(response.body)
+
+    expect(transaction["invoice_id"]).to eq(invoice_id)
+  end
 end
