@@ -32,7 +32,7 @@ describe "merchant search API" do
 
     expect(response).to be_success
     merchant = JSON.parse(response.body)
-
+byebug
     expect(merchant["id"]).to eq(created_merchant.id)
   end
 
