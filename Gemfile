@@ -10,7 +10,8 @@ gem 'rails', '~> 5.1.3'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'database_cleaner'
-
+gem 'active_model_serializers'
+gem 'responders'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -19,7 +20,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-
+  
 end
 
 group :development do
