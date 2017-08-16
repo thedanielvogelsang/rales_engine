@@ -11,6 +11,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'database_cleaner'
 gem 'active_model_serializers'
+gem 'responders'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
