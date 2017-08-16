@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'invoice_items api invoice relationship' do
+describe 'invoice_items api item relationship' do
   before(:each) do
     @merchant = create(:merchant)
     @item = create(:item, merchant: @merchant)
