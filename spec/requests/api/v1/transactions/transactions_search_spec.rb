@@ -52,7 +52,7 @@ describe 'transaction search API' do
   it "can find a single transaction by result" do
     result = create(:transaction).result
 
-    get "/api/v1/transactions/find?credit_card_number=#{result}"
+    get "/api/v1/transactions/find?result=#{result}"
 
     expect(response).to be_success
 
