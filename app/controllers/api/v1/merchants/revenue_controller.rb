@@ -9,8 +9,12 @@ class Api::V1::Merchants::RevenueController < ApplicationController
     end
   end
 
+  def index
+    render json: Merchant.most_revenue(search_params[:quantity])
+  end
+
   def search_params
-    params.permit(:id, :date)
+    params.permit(:id, :date, :quantity)
   end
 
 end
