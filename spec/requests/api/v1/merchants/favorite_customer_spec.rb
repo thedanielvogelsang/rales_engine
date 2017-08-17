@@ -17,8 +17,8 @@ describe 'merchants api favorite_customer' do
                             .merge(Transaction.successful)
     expect(customer_1_successfuls.count).to eq(6)
     expect(customer_2_successfuls.count).to eq(7)
-
     get "/api/v1/merchants/#{id}/favorite_customer"
+
     assert_response :success
     customer = JSON.parse(response.body)
     expect(customer['id']).to eq(Customer.second.id)

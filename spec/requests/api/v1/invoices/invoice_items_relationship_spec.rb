@@ -6,6 +6,7 @@ describe 'invoices api invoice_items relationship' do
     id = invoice.id
     invoice_item = invoice.invoice_items.first
     get "/api/v1/invoices/#{id}/invoice_items"
+    
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)

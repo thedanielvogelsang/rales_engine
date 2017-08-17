@@ -8,7 +8,9 @@ describe 'customers api transaction relationship' do
     trans_count = transactions.flatten.count
     transaction_id = transactions.first.first.id
     transaction_id_3 = transactions.last.last.id
+
     get "/api/v1/customers/#{id}/transactions"
+    
     assert_response :success
     returned_transactions = JSON.parse(response.body)
     expect(returned_transactions.count).to eq(3)

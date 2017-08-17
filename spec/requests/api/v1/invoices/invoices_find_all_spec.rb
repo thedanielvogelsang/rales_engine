@@ -17,11 +17,10 @@ describe "invoices search 'find_all' API" do
     different_invoice = create(:invoice)
     expect(Invoice.count).to eq(4)
     get "/api/v1/invoices/find_all?customer_id=#{customer.id}"
+
     assert_response :success
     invoices = JSON.parse(response.body)
-    
     expect(invoices.count).to eq(3)
-
   end
   it "can search and find all invoices by merchant_id" do
     customer_1 = create(:customer)
@@ -33,11 +32,10 @@ describe "invoices search 'find_all' API" do
     different_invoice = create(:invoice, merchant: merchant_2, customer: customer_2)
     expect(Invoice.count).to eq(4)
     get "/api/v1/invoices/find_all?merchant_id=#{merchant_1.id}"
+
     assert_response :success
     invoices = JSON.parse(response.body)
-
     expect(invoices.count).to eq(3)
-
   end
 
   it "can search and find all invoices by status" do
@@ -46,6 +44,7 @@ describe "invoices search 'find_all' API" do
     expect(Invoice.count).to eq(4)
     expect(different_invoice.status).to_not eq(created_invoices.first.status)
     get "/api/v1/invoices/find_all?status=shipped"
+
     assert_response :success
     invoices = JSON.parse(response.body)
     expect(invoices.count).to eq(3)
@@ -62,6 +61,7 @@ describe "invoices search 'find_all' API" do
     different_invoice = create(:invoice)
     expect(Invoice.count).to eq(4)
     get "/api/v1/invoices/find_all?created_at=july_10_2010"
+
     assert_response :success
     invoices = JSON.parse(response.body)
     expect(invoices.count).to eq(3)
@@ -78,12 +78,12 @@ describe "invoices search 'find_all' API" do
     different_invoice = create(:invoice)
     expect(Invoice.count).to eq(4)
     get "/api/v1/invoices/find_all?updated_at=july_20_2020"
+
     assert_response :success
     invoices= JSON.parse(response.body)
     expect(invoices.count).to eq(3)
     expect(invoices.first['id']).to eq(id1)
     expect(invoices.second['id']).to eq(id2)
     expect(invoices.last['id']).to eq(id3)
-    # different invoice test proof?
   end
 end

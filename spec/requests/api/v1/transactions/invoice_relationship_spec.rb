@@ -6,6 +6,7 @@ describe 'transaction api invoice relationship' do
     transaction = Transaction.last
     invoice_id = transaction.invoice.id
     get "/api/v1/transactions/#{id}/invoice"
+    
     assert_response :success
     invoice = JSON.parse(response.body)
     expect(invoice['id']).to eq(invoice_id)
