@@ -16,5 +16,6 @@ class Item < ApplicationRecord
     revenue = invoices.joins(:transactions)
         .merge(Transaction.successful)
         .sum("invoice_items.unit_price * invoice_items.quantity")
+    revenue = '%.2f' % (revenue.to_i/100.0)
   end
 end
