@@ -32,9 +32,7 @@ describe 'Revenue for Merchant search by date API' do
     get "/api/v1/merchants/#{merchant.id}/revenue?date=July_10_2010"
 
     expect(response).to be_success
-
     revenue = JSON.parse(response.body)
-
     expect(revenue["revenue"]).to eq("1.00")
     expect(revenue["revenue"]).to_not eq("5.00")
   end

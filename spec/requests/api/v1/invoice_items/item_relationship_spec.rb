@@ -11,6 +11,7 @@ describe 'invoice_items api item relationship' do
     id = invoice_item.id
     item_id = invoice_item.item.id
     get "/api/v1/invoice_items/#{id}/item"
+    
     assert_response :success
     item = JSON.parse(response.body)
     expect(item['id']).to eq(item_id)

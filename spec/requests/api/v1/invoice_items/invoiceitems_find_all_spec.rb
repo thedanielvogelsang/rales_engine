@@ -11,7 +11,9 @@ describe "invoice_items search 'find_all' API" do
     id = items.first.id
     different_item = create(:invoice_item, item_id: @item.id, invoice_id: @invoice.id, unit_price: 10.00)
     expect(InvoiceItem.count).to eq(4)
+
     get "/api/v1/invoice_items/find_all?id=#{id}"
+
     expect(response).to be_success
     invoice_item = JSON.parse(response.body)
     expect(invoice_item.count).to eq(1)
@@ -21,6 +23,7 @@ describe "invoice_items search 'find_all' API" do
     items = create_list(:invoice_item, 3, item_id: @item.id, invoice_id: @invoice.id)
     id = items.first.id
     get "/api/v1/invoice_items/find_all?item_id=#{@item.id}"
+
     expect(response).to be_success
     invoice_item = JSON.parse(response.body)
     expect(invoice_item.count).to eq(3)
@@ -31,6 +34,7 @@ describe "invoice_items search 'find_all' API" do
     id = items.last.id
     expect(InvoiceItem.count).to eq(3)
     get "/api/v1/invoice_items/find_all?invoice_id=#{@invoice.id}"
+
     expect(response).to be_success
     invoice_items = JSON.parse(response.body)
     expect(invoice_items.last["id"]).to eq(id)
@@ -41,6 +45,7 @@ describe "invoice_items search 'find_all' API" do
     different_item = create(:invoice_item, item_id: @item.id, invoice_id: @invoice.id, unit_price: 10.00)
     expect(InvoiceItem.count).to eq(4)
     get "/api/v1/invoice_items/find_all?quantity=4"
+
     expect(response).to be_success
     invoice_items = JSON.parse(response.body)
     expect(invoice_items.first["quantity"]).to eq(4)
@@ -51,6 +56,7 @@ describe "invoice_items search 'find_all' API" do
     different_item = create(:invoice_item, item_id: @item.id, invoice_id: @invoice.id, unit_price: 10.00)
     expect(InvoiceItem.count).to eq(4)
     get "/api/v1/invoice_items/find_all?unit_price=#{price}"
+
     expect(response).to be_success
     invoice_items = JSON.parse(response.body)
     expect(invoice_items.count).to eq(3)
@@ -67,6 +73,7 @@ describe "invoice_items search 'find_all' API" do
     different_item = create(:invoice_item, item_id: @item.id, invoice_id: @invoice.id)
     expect(InvoiceItem.count).to eq(4)
     get "/api/v1/invoice_items/find_all?created_at=july_10_2010"
+
     assert_response :success
     invoice_items = JSON.parse(response.body)
     expect(invoice_items.count).to eq(3)
@@ -80,6 +87,7 @@ describe "invoice_items search 'find_all' API" do
                 updated_at: "July 20 2020")
     id = items.first.id
     get "/api/v1/invoice_items/find_all?updated_at=july_20_2020"
+    
     assert_response :success
     invoice_items = JSON.parse(response.body)
     expect(invoice_items.first['id']).to eq(id)

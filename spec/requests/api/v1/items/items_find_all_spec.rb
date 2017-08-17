@@ -6,6 +6,7 @@ describe "items search 'find_all' API" do
     items = create_list(:item, 3, merchant: merchant)
     id = items.first.id
     get "/api/v1/items/find_all?id=#{id}"
+
     expect(response).to be_success
     item = JSON.parse(response.body)
     expect(item.count).to eq(1)
@@ -19,6 +20,7 @@ describe "items search 'find_all' API" do
     different_item = create(:item, merchant: merchant_2)
     expect(Item.count).to eq(4)
     get "/api/v1/items/find_all?name=#{name}"
+
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)
@@ -34,6 +36,7 @@ describe "items search 'find_all' API" do
     different_item = create(:item, merchant: merchant_2)
         expect(Item.count).to eq(4)
     get "/api/v1/items/find_all?description=#{description}"
+    
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)
@@ -48,6 +51,7 @@ describe "items search 'find_all' API" do
     different_item = create(:item, merchant: merchant_2)
     expect(Item.count).to eq(4)
     get "/api/v1/items/find_all?merchant_id=#{id}"
+
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)
@@ -63,6 +67,7 @@ describe "items search 'find_all' API" do
     expect(Item.count).to eq(4)
     expect(different_item.unit_price).to_not eq(price)
     get "/api/v1/items/find_all?unit_price=#{price}"
+
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)
@@ -79,6 +84,7 @@ describe "items search 'find_all' API" do
     different_item = create(:item, merchant: merchant_2)
     expect(Item.count).to eq(4)
     get "/api/v1/items/find_all?created_at=july_10_2010"
+
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)
@@ -97,6 +103,7 @@ describe "items search 'find_all' API" do
     different_item = create(:item, merchant: merchant_2)
     expect(Item.count).to eq(4)
     get "/api/v1/items/find_all?updated_at=july_20_2020"
+
     assert_response :success
     items= JSON.parse(response.body)
     expect(items.count).to eq(3)

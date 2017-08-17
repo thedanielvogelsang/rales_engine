@@ -16,6 +16,7 @@ describe 'merchants api total revenue by date' do
   it 'returns total revenue given date param' do
     expect(@merchant1.revenue_by_date(@date).to_i > @merchant2.revenue_by_date(@date).to_i).to be false
     get "/api/v1/merchants/revenue?date=#{@date}"
+    
     merchants = JSON.parse(response.body)
     expect(merchants['total_revenue']).to eq("30.00")
   end

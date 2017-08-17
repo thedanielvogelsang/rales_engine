@@ -29,9 +29,7 @@ describe "Customer's Favorite Merchant API" do
     get "/api/v1/customers/#{customer.id}/favorite_merchant"
 
     expect(response).to be_success
-
     favorite_merchant = JSON.parse(response.body)
-
     expect(favorite_merchant["id"]).to eq(merch_2.id)
     expect(favorite_merchant["id"]).to_not eq(merch_1.id)
 

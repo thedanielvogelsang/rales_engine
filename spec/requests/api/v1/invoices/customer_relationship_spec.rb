@@ -6,6 +6,7 @@ describe 'invoices api customer relationship' do
     id = invoice.id
     customer_id = invoice.customer.id
     get "/api/v1/invoices/#{id}/customer"
+    
     assert_response :success
     customer = JSON.parse(response.body)
     expect(customer['id']).to eq(customer_id)

@@ -29,9 +29,7 @@ describe 'Merchants by Total Items Sold API' do
     get "/api/v1/merchants/most_items?quantity=2"
 
     expect(response).to be_success
-
     most_items = JSON.parse(response.body)
-
     expect(most_items.count).to eq(2)
   end
 end

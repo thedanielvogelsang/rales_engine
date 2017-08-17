@@ -31,9 +31,7 @@ describe 'merchants revenue API' do
     get "/api/v1/merchants/#{merchant.id}/revenue"
 
     expect(response).to be_success
-
     revenue = JSON.parse(response.body)
-
     expect(revenue["revenue"]).to eq("6.00")
   end
 end

@@ -21,9 +21,11 @@ describe 'items api most revenue by count' do
     group_size_one = 1
     group_size_two = 2
     get "/api/v1/items/most_revenue?quantity=#{group_size_one}"
+    
     assert_response :success
     group1 = JSON.parse(response.body)
     get "/api/v1/items/most_revenue?quantity=#{group_size_two}"
+
     assert_response :success
     group2 = JSON.parse(response.body)
     expect(group1.count).to eq(1)
@@ -32,6 +34,7 @@ describe 'items api most revenue by count' do
 
   it 'ranks orders them correctly by most_revenue' do
     get "/api/v1/items/most_revenue?quantity=2"
+
     group = JSON.parse(response.body)
     expect(@item1.total_revenue > @item2.total_revenue)
           .to be true

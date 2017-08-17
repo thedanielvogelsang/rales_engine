@@ -5,7 +5,9 @@ describe 'invoices api transactions relationship' do
     invoice = create(:invoice, :with_transactions)
     id = invoice.id
     transaction = invoice.transactions.first
+
     get "/api/v1/invoices/#{id}/transactions"
+    
     assert_response :success
     transactions = JSON.parse(response.body)
     expect(transactions.count).to eq(3)

@@ -10,7 +10,9 @@ describe 'invoice_items api invoice relationship' do
     invoice_item = create(:invoice_item, item: @item, invoice: @invoice)
     id = invoice_item.id
     invoice_id = invoice_item.invoice.id
+
     get "/api/v1/invoice_items/#{id}/invoice"
+    
     assert_response :success
     invoice = JSON.parse(response.body)
     expect(invoice['id']).to eq(invoice_id)

@@ -8,9 +8,7 @@ describe "invoice transactions api" do
     get "/api/v1/invoices/#{invoice.id}/transactions"
 
     expect(response).to be_success
-
     transactions = JSON.parse(response.body)
-
     expect(transactions.count).to be(5)
   end
 end

@@ -27,9 +27,7 @@ describe 'Item Best Day API' do
     get "/api/v1/items/#{item_1.id}/best_day"
 
     expect(response).to be_success
-
     best_day = JSON.parse(response.body)
-
     expect(best_day["best_day"]).to eq("2015-06-01T00:00:00.000Z")
   end
 end
