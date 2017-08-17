@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         get '/find_all', to: 'search#index'
         get '/most_revenue', to: 'revenue#index'
         get '/random', to: 'random#show'
+        get '/revenue', to: 'revenue#show'
         get '/:id/revenue', to: 'revenue#show'
         get '/:id/items', to: 'items#index'
         get '/:id/invoices', to: 'invoices#index'
