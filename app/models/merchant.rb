@@ -19,6 +19,14 @@ class Merchant < ApplicationRecord
     revenue = '%.2f' % (revenue.to_i/100.0)
   end
 
+  def self.most_items(qty = nil)
+    select("merchants.*, sum(invoice_items.quantity) AS total_qty")
+      .joins(:invoices => [:transactions, :invoice_items])
+      .merge(Transaction.successful)
+      .group("merchants.id")
+      .order("total_qty DESC").limit(qty)
+  end
+
   def customers
     Customer.joins(:invoices).where(invoices: {merchant_id: self.id}).distinct
   end
