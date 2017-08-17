@@ -8,6 +8,8 @@ Rails.application.routes.draw do
         get '/:id/revenue', to: 'revenue#show'
         get '/:id/items', to: 'items#index'
         get '/:id/invoices', to: 'invoices#index'
+        get '/:id/customers_with_pending_invoices', to: 'customers#show'
+        get '/:id/favorite_customer', to: 'favorite#show'
       end
       resources :merchants, only: [:index, :show]
       namespace :items do
