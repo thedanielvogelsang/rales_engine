@@ -19,7 +19,9 @@ FactoryGirl.define do
         transaction_count 3
       end
       after(:create) do |invoice, evaluator|
-        create_list(:transaction, evaluator.transaction_count, invoice: invoice)
+        create_list(:transaction, evaluator.transaction_count,
+                     invoice: invoice,
+                     result: 'success')
       end
     end
   end
