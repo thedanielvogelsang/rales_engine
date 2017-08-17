@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Merchants by Total Items Sold API' do
-  it 'returns successful reponse' do
+  it 'returns most items sold for merchant' do
     create(:customer)
     merch_1, merch_2, merch_3 = create_list(:merchant, 3)
     item_1 = create(:item, merchant: merch_1)
