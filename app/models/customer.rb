@@ -25,4 +25,8 @@ class Customer < ApplicationRecord
       .where(invoices: {merchant_id: id})
   end
 
+  def self.customer_invoices(id)
+    find(id).invoices.order("invoices.id")
+  end
+
 end

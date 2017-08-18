@@ -1,5 +1,7 @@
 class Api::V1::Customers::InvoicesController < ApplicationController
+
   def index
-    render json: Customer.find(params[:id]).invoices.order("invoices.id")
+    render json: Customer.customer_invoices(params[:id])
   end
+
 end
