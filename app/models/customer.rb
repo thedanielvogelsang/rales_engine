@@ -29,4 +29,8 @@ class Customer < ApplicationRecord
     find(id).invoices.order("invoices.id")
   end
 
+  def self.random_customer
+    limit(1).order("RANDOM()")
+  end
+
 end
