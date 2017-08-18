@@ -16,10 +16,29 @@ class Invoice < ApplicationRecord
   end
 
   def self.revenue_by_date(date)
-    # revenue = 
     Invoice.joins(:invoice_items)
         .where(created_at: date)
         .sum("invoice_items.unit_price * invoice_items.quantity")
-    # revenue = '%.2f' % (revenue.to_i/100.0)
   end
+
+  def self.invoice_customers(id)
+    find(id).customer
+  end
+
+  def self.invoice_invoiceitems(id)
+    find(id).invoice_items
+  end
+
+  def self.invoice_items(id)
+    Invoice.find(id).items
+  end
+
+  def self.invoice_merchants(id)
+    find(id).merchant
+  end
+
+  def self.random_invoices
+    limit(1).order("RANDOM()")
+  end
+
 end
