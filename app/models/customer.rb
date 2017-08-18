@@ -19,4 +19,10 @@ class Customer < ApplicationRecord
                   .order('count_id DESC').limit(1).count(:id).first[0])
   end
 
+  def self.customers_pending(id)
+    joins(:invoices)
+      .merge(Invoice.where(status: 'pending'))
+      .where(invoices: {merchant_id: id})
+  end
+
 end
