@@ -32,38 +32,38 @@ Rails 5.1.3
 ```
 
 If Ruby or Rails is not installed on your machine, please see the following links:
-https://www.ruby-lang.org/en/documentation/installation/
-http://railsapps.github.io/installrubyonrails-mac.html
+* https://www.ruby-lang.org/en/documentation/installation/
+* http://railsapps.github.io/installrubyonrails-mac.html
 
 
 After ensuring you have Ruby and Rails installed, clone this project to your desired directory:
 ```
-shell git clone git@github.com:thedanielvogelsang/rales_engine.git
+git clone git@github.com:thedanielvogelsang/rales_engine.git
 ```
 
 Change directory to rales_engine:
 ```
-'bash' cd rales_engine
+cd rales_engine
 ```
 
 Bundle:
 ```
-'bash' bundle install
+bundle install
 ```
 
 Create Database:
 ```
-'bash' rake db:create
+rake db:create
 ```
 
 Migrate Database:
 ```
-'bash' rake db:migrate  
+rake db:migrate  
 ```
 
 Import Database Records:
 ```
-'bash' rake import
+rake import
 ```
 
 Note: "rake db:seed" is not used as a separate "rake import" task exists to seed the database from web-hosted CSV files.
@@ -74,12 +74,12 @@ Your Rales Engine is ready to go.
 Testing:
 RSpec is the primary testing tool used for this project. To run the developer built testing suite, type:
 ```
-'bash' rspec
+rspec
 ```
 
 Launching Rails in your local environment:
 ```
-'bash' rails s
+rails s
 ```
 
 Once you see something similar to:
