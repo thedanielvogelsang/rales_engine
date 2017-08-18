@@ -36,7 +36,7 @@ describe "items search 'find_all' API" do
     different_item = create(:item, merchant: merchant_2)
         expect(Item.count).to eq(4)
     get "/api/v1/items/find_all?description=#{description}"
-    
+
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)

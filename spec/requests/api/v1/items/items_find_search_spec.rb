@@ -38,7 +38,7 @@ describe "items search 'find' API" do
 
     assert_response :success
     item = JSON.parse(response.body)
-    expect(item['unit_price'].to_f).to eq(price)
+    expect(item['unit_price']).to eq(price)
   end
 
   it "can search and find a single item by its merchant_id" do
@@ -65,7 +65,7 @@ describe "items search 'find' API" do
     merchant = create(:merchant)
     id = create(:item, updated_at: "July 20 2020", merchant: merchant).id
     get "/api/v1/items/find?updated_at=july_20_2020"
-    
+
     assert_response :success
     item = JSON.parse(response.body)
     expect(item['id']).to eq(id)

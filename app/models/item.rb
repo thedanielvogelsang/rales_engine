@@ -27,7 +27,7 @@ class Item < ApplicationRecord
   end
 
   def self.most_items(quantity = nil)
-    select("items.id, items.name, sum(invoice_items.quantity) AS item_qty")
+    select("items.*, sum(invoice_items.quantity) AS item_qty")
       .joins(:invoice_items)
       .group("items.id")
       .order("item_qty DESC").limit(quantity)
