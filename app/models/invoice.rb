@@ -16,9 +16,10 @@ class Invoice < ApplicationRecord
   end
 
   def self.revenue_by_date(date)
-    revenue = Invoice.joins(:invoice_items)
+    # revenue = 
+    Invoice.joins(:invoice_items)
         .where(created_at: date)
         .sum("invoice_items.unit_price * invoice_items.quantity")
-    revenue = '%.2f' % (revenue.to_i/100.0)
+    # revenue = '%.2f' % (revenue.to_i/100.0)
   end
 end
