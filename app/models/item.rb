@@ -32,4 +32,14 @@ class Item < ApplicationRecord
       .group("items.id")
       .order("item_qty DESC").limit(quantity)
   end
+
+  def self.return_all_by_price(price)
+    price = price.to_f * 100
+    Item.where(unit_price: price).to_a.flatten
+  end
+
+  def self.return_by_price(price)
+    price = '%.2f' % (price.to_f*100)
+    Item.where(unit_price: price).order(:id).to_a.flatten.first
+  end
 end
