@@ -66,7 +66,7 @@ describe "items search 'find_all' API" do
     different_item = create(:item, merchant: merchant_2)
     expect(Item.count).to eq(4)
     expect(different_item.unit_price).to_not eq(price)
-    get "/api/v1/items/find_all?unit_price=#{price}"
+    get "/api/v1/items/find_all?unit_price=#{price/100}"
 
     assert_response :success
     items = JSON.parse(response.body)
