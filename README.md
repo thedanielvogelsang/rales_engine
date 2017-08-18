@@ -38,7 +38,7 @@ http://railsapps.github.io/installrubyonrails-mac.html
 
 After ensuring you have Ruby and Rails installed, clone this project to your desired directory:
 ```
-sh git clone git@github.com:thedanielvogelsang/rales_engine.git
+shell git clone git@github.com:thedanielvogelsang/rales_engine.git
 ```
 
 Change directory to rales_engine:
