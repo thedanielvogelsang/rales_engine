@@ -38,7 +38,7 @@ describe "items search 'find' API" do
 
     assert_response :success
     item = JSON.parse(response.body)
-    expect(item['unit_price']).to eq(price)
+    expect(item['unit_price'].to_f).to eq(price/100)
   end
 
   it "can search and find a single item by its merchant_id" do
