@@ -44,12 +44,14 @@ describe "invoice_items search 'find' API" do
     expect(invoice_item["quantity"]).to eq(4)
   end
   it "can search and find a single invoice_item by unit_price" do
-    price = create(:invoice_item, item_id: @item.id, invoice_id: @invoice.id).unit_price
-    get "/api/v1/invoice_items/find?unit_price=#{price}"
+    price = create(:invoice_item, item_id: @item.id, invoice_id: @invoice.id, unit_price: 20.00).unit_price
+    get "/api/v1/invoice_items/find?unit_price=#{price/100}"
 
     expect(response).to be_success
+
     invoice_item = JSON.parse(response.body)
-    expect(invoice_item["unit_price"].to_f).to eq(price)
+
+    expect(invoice_item["unit_price"].to_f).to eq(price/100)
   end
   it "can search and find a single invoice_item by its created_at" do
     id = create(:invoice_item, item_id: @item.id,
@@ -66,7 +68,7 @@ describe "invoice_items search 'find' API" do
                 invoice_id: @invoice.id,
                 updated_at: "July 20 2020").id
     get "/api/v1/invoice_items/find?updated_at=july_20_2020"
-    
+
     assert_response :success
     invoice_item = JSON.parse(response.body)
     expect(invoice_item['id']).to eq(id)
