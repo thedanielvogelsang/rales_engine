@@ -1,7 +1,7 @@
 class Api::V1::InvoiceItems::RandomController < ApplicationController
 
   def show
-    render json: InvoiceItem.limit(1).order("RANDOM()")
+    render json: InvoiceItem.random_invoiceitem
   end
-  
+
 end
