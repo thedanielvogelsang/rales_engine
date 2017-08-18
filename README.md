@@ -38,7 +38,7 @@ http://railsapps.github.io/installrubyonrails-mac.html
 
 After ensuring you have Ruby and Rails installed, clone this project to your desired directory:
 ```
-'bash' git clone git@github.com:thedanielvogelsang/rales_engine.git
+sh git clone git@github.com:thedanielvogelsang/rales_engine.git
 ```
 
 Change directory to rales_engine:
@@ -100,10 +100,10 @@ Note: http://localhost:3000 is the URL of the locally launched project.
 Head to your preferred web browser.
 
 Here are a few fun links to browse to (all output in JSON):
-List of all Merchants:              http://localhost:3000/api/v1/merchants
-List of all Items:                  http://localhost:3000/api/v1/items
-See an Items best selling day:      http://localhost:3000/api/v1/items/1/best_day
-See a Customer's favorite merchant: http://localhost:3000/api/v1/customers/1/favorite_merchant
+* List of all Merchants:              http://localhost:3000/api/v1/merchants
+* List of all Items:                  http://localhost:3000/api/v1/items
+* See an Items best selling day:      http://localhost:3000/api/v1/items/1/best_day
+* See a Customer's favorite merchant: http://localhost:3000/api/v1/customers/1/favorite_merchant
 
 ##Authors
 
