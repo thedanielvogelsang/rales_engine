@@ -34,7 +34,7 @@ describe "items search 'find' API" do
   it "can search and find a single item by its unit price" do
     merchant = create(:merchant)
     price = create(:item, merchant: merchant).unit_price
-    get "/api/v1/items/find?unit_price=#{price}"
+    get "/api/v1/items/find?unit_price=#{price/100}"
 
     assert_response :success
     item = JSON.parse(response.body)

@@ -25,4 +25,12 @@ class Customer < ApplicationRecord
       .where(invoices: {merchant_id: id})
   end
 
+  def self.customer_invoices(id)
+    find(id).invoices.order("invoices.id")
+  end
+
+  def self.random_customer
+    limit(1).order("RANDOM()")
+  end
+
 end

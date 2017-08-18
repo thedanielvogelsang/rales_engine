@@ -1,11 +1,17 @@
 class Api::V1::Invoices::SearchController < ApplicationController
 
   def show
-    render json: Invoice.find_by(params.keys.first.to_sym => params[params.keys.first])
+    render json: Invoice.find_by(search_params)
   end
 
   def index
-    render json: Invoice.where(params.keys.first.to_sym => params[params.keys.first])
+    render json: Invoice.where(search_params)
   end
-  
+
+  def search_params
+    params.permit(:id, :status, :created_at, :updated_at, :customer_id, :merchant_id)
+  end
+
+
+
 end

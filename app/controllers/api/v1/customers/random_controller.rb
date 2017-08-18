@@ -1,7 +1,7 @@
 class Api::V1::Customers::RandomController < ApplicationController
 
   def show
-    render json: Customer.limit(1).order("RANDOM()")
+    render json: Customer.random_customer
   end
 
 end
