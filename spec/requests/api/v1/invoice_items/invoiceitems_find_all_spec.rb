@@ -53,12 +53,13 @@ describe "invoice_items search 'find_all' API" do
   it "can search and find all invoice_items by unit_price" do
     items = create_list(:invoice_item, 3, item_id: @item.id, invoice_id: @invoice.id)
     price = items.first.unit_price
-    different_item = create(:invoice_item, item_id: @item.id, invoice_id: @invoice.id, unit_price: 10.00)
+    different_item = create(:invoice_item, item_id: @item.id, invoice_id: @invoice.id, unit_price: 1000)
     expect(InvoiceItem.count).to eq(4)
     get "/api/v1/invoice_items/find_all?unit_price=#{price}"
 
     expect(response).to be_success
     invoice_items = JSON.parse(response.body)
+    
     expect(invoice_items.count).to eq(3)
     expect(invoice_items.first["unit_price"].to_f).to eq(price)
     expect(invoice_items.second["unit_price"].to_f).to eq(price)
@@ -87,7 +88,7 @@ describe "invoice_items search 'find_all' API" do
                 updated_at: "July 20 2020")
     id = items.first.id
     get "/api/v1/invoice_items/find_all?updated_at=july_20_2020"
-    
+
     assert_response :success
     invoice_items = JSON.parse(response.body)
     expect(invoice_items.first['id']).to eq(id)
