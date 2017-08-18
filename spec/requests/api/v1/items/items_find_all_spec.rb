@@ -71,7 +71,7 @@ describe "items search 'find_all' API" do
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)
-    expect(items.first['unit_price'].to_f).to eq(price)
+    expect(items.first['unit_price'].to_f).to eq(price/100)
     # different item test proof?
   end
   it "can search and find all items by created_at" do

@@ -22,8 +22,4 @@ class Api::V1::InvoiceItems::InvoiceItemsSearchController < ApplicationControlle
   def search_params
     params.permit(:id, :item_id, :invoice_id, :created_at, :updated_at, :quantity, :unit_price)
   end
-
-  def to_decimal
-    to_d*100
-  end
 end
