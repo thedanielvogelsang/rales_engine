@@ -4,20 +4,18 @@ class Merchant < ApplicationRecord
   has_many :items
 
   def revenue_by_merchant
-    revenue = invoices
+    invoices
       .joins(:transactions, :invoice_items)
       .where(transactions: {result: "success"})
       .sum("invoice_items.unit_price * invoice_items.quantity")
-    revenue = '%.2f' % (revenue.to_i/100.0)
   end
 
   def revenue_by_date(date)
-    revenue = invoices
+    invoices
       .where(created_at: date)
       .joins(:transactions, :invoice_items)
       .where(transactions: {result: "success"})
       .sum("invoice_items.unit_price * invoice_items.quantity")
-    revenue = '%.2f' % (revenue.to_i/100.0)
   end
 
   def self.most_items(qty = nil)
@@ -30,11 +28,11 @@ class Merchant < ApplicationRecord
 
   def self.most_revenue(qty = nil)
      select("merchants.*, sum(invoice_items.unit_price * invoice_items.quantity) AS total_rev")
-                  .joins(:invoices => [:transactions, :invoice_items])
-                  .merge(Transaction.successful)
-                  .group(:id)
-                  .limit(qty)
-                  .order("total_rev DESC")
+      .joins(:invoices => [:transactions, :invoice_items])
+      .merge(Transaction.successful)
+      .group(:id)
+      .limit(qty)
+      .order("total_rev DESC")
   end
 
   def customers

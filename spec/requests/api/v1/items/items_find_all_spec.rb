@@ -36,7 +36,7 @@ describe "items search 'find_all' API" do
     different_item = create(:item, merchant: merchant_2)
         expect(Item.count).to eq(4)
     get "/api/v1/items/find_all?description=#{description}"
-    
+
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)
@@ -71,7 +71,7 @@ describe "items search 'find_all' API" do
     assert_response :success
     items = JSON.parse(response.body)
     expect(items.count).to eq(3)
-    expect(items.first['unit_price'].to_f).to eq(price)
+    expect(items.first['unit_price'].to_f).to eq(price/100)
     # different item test proof?
   end
   it "can search and find all items by created_at" do

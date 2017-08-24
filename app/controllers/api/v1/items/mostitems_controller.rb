@@ -9,5 +9,4 @@ class Api::V1::Items::MostitemsController < ApplicationController
   def search_params
     params.permit(:quantity)
   end
-
 end
