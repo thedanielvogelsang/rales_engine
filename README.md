@@ -8,7 +8,7 @@ https://gist.github.com/thedanielvogelsang/0bca4d3f136463928da1cda4f02591ca
 
 ##Getting Started
 
-Rales Engine is a Ruby on Rails Application that requires both Ruby and Rails to be installed on your machine
+Rales Engine is a Ruby on Rails application that requires both Ruby and Rails to be installed on your machine
 
 Ruby:
 From your bash run:
