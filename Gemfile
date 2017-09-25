@@ -20,7 +20,6 @@ group :development, :test do
   gem 'awesome_print'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-
 end
 
 group :development do
